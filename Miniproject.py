@@ -10,10 +10,14 @@ SN = 1
 exit_time = datetime.now().strftime("%Y-%m-%d %I:%M %p")
 # Initialize a variable to keep track of the slot number
 current_slot = 1
+# Initialize no. of rows and columns for the grid of slots
+num_rows = 8
+num_columns = 5
 
 # Initialize an empty list to store vehicle details
 vehicle_data = []
 exit_data = []
+vis = [0]*((num_rows*num_columns)+1) # visited list to keep count of the occupied slots
 
 def move_to_page(page):
     for widget in frame_container.winfo_children():
@@ -52,8 +56,7 @@ frame_container.pack(expand=True)
 
 # Create a 8x5 grid of frames
 def home_page():
-    global vehicle_data
-    num_rows, num_columns = 8, 5
+    global vehicle_data, num_rows, num_columns
 
     frames = [[tk.Frame(frame_container, width=100, height=500, borderwidth=1, relief="solid") for _ in range(num_columns)] for _ in range(num_rows)]
 
@@ -76,7 +79,7 @@ def home_page():
                     label.pack(expand=True, padx=50, pady=3) # Center the label in the frame
 
 def add_vehicle_page():
-    global owner_name_entry, mobile_number_entry, vehicle_number_entry, message_label
+    global owner_name_entry, mobile_number_entry, vehicle_number_entry, message_label,num_rows, num_columns
 
     title_label = tk.Label(frame_container, fg='white', bg='black', text='VEHICLE DETAILS', font=('cambria', 30))
     title_label.pack()
@@ -96,7 +99,7 @@ def add_vehicle_page():
     vehicle_number_entry = tk.Entry(frame_container, font=('cambria', 15))
     vehicle_number_entry.pack(pady=10)
 
-    add_button = tk.Button(frame_container, text="Add Vehicle", font=('cambria', 15), fg='black', command=add_vehicle_details)
+    add_button = tk.Button(frame_container, text="Add Vehicle", font=('cambria', 15), bg = 'purple', fg='white', command=add_vehicle_details)
     add_button.pack(pady=20)
 
     message_label = tk.Label(frame_container, text="", fg="red")
@@ -106,13 +109,22 @@ def is_valid_phone_number(phone_number):
     return len(phone_number) == 10 and phone_number.isdigit()
 
 def add_vehicle_details():
-    global owner_name_entry, mobile_number_entry, vehicle_number_entry, message_label, current_slot, vehicle_data, SN, exit_time
+    global owner_name_entry, mobile_number_entry, vehicle_number_entry, message_label, current_slot, vehicle_data, vis, SN, exit_time,num_rows, num_columns
 
     owner_name = owner_name_entry.get()
     mobile_number = mobile_number_entry.get()
     vehicle_number = vehicle_number_entry.get()
 
     if owner_name and is_valid_phone_number(mobile_number):
+
+        start_slot = current_slot
+    
+        while vis[current_slot] != 0:
+            current_slot = (current_slot % (num_columns*num_rows)) + 1
+            if current_slot == start_slot:  
+                    message_label.config(text="No vacant slot", fg="red")
+                    return
+
         # Create a dictionary to store the current vehicle details
         vehicle_details = {
             "SN" : SN,
@@ -123,8 +135,8 @@ def add_vehicle_details():
             "Entry Time" : datetime.now().strftime("%Y-%m-%d %I:%M %p"),
             "EXIT" : exit_time
         }
-        # Increment the slot number and S no. for the next vehicle
-        current_slot += 1
+        # Increment the S no. for the next vehicle and mark current slot as visited
+        vis[current_slot] = 1
         SN += 1
 
         # Add the dictionary to the list of vehicle_data
@@ -141,8 +153,10 @@ def add_vehicle_details():
         message_label.config(text="Please fill in all the fields correctly", fg="red")
 
 def exit(i) :
-    global SN
+    global SN,vis
 
+    current_slot = vehicle_data[i]['Slot']
+    vis[current_slot] = 0
     vehicle_data[i]['EXIT'] = datetime.now().strftime("%Y-%m-%d %I:%M %p")
     exit_data.append(vehicle_data[i])
     vehicle_data[i] = None
@@ -154,8 +168,12 @@ def exit(i) :
         else :
             row['SN'] = sn
             sn += 1
-
     SN = sn
+    sn = 1
+    for row in exit_data :
+        row['SN'] = sn
+        sn += 1
+
     move_to_page(home_page)
 
 def Refresh(refresh):
@@ -186,7 +204,7 @@ def manage_vehicle_page() :
             if data == "EXIT" :
                 cell_label = tk.Label(table,borderwidth=1,width=19)
                 cell_label.grid(row=i+1, column=j, padx=1, pady=1)
-                tk.Button(cell_label,bg='green',bd=1,text='EXIT',fg='white',command=lambda i=i:exit(i)).place(x=0,y=0,width=40,height=20,relx=0.5,rely=0.5,anchor="center")
+                tk.Button(cell_label,bg='green',bd=1,text='EXIT',fg='white',command=lambda i=i:exit(i)).place(x=0,y=0,width=60,height=24,relx=0.5,rely=0.5,anchor="center")
                 continue
             cell_label = tk.Label(table,text=row[data],font=("Cambria",10,"bold"),borderwidth=1, width=19)
             cell_label.grid(row=i+1, column=j, padx=1)
