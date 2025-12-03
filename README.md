@@ -1,8 +1,7 @@
 # 🚗 Vehicle Management System
 
 ![Python](https://img.shields.io/badge/Python-3.x-blue?style=for-the-badge&logo=python)
-![GUI](https://img.shields.io/badge/Interface-Tkinter-orange?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Active-green?style=for-the-badge)
+![GUI](https://img.shields.io/badge/GUI-Tkinter-orange?style=for-the-badge)
 
 A GUI-based desktop application developed in Python to manage vehicle parking, track slot availability, and maintain entry/exit history. This project demonstrates the use of **Tkinter** for frontend design and logical data structures for backend management.
 
