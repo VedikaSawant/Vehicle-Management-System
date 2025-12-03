@@ -3,7 +3,7 @@
 ![Python](https://img.shields.io/badge/Python-3.x-blue?style=for-the-badge&logo=python)
 ![GUI](https://img.shields.io/badge/GUI-Tkinter-orange?style=for-the-badge)
 
-A GUI-based desktop application developed in Python to manage vehicle parking, track slot availability, and maintain entry/exit history. This project demonstrates the use of **Tkinter** for frontend design and logical data structures for backend management.
+A GUI-based desktop application developed in Python to manage vehicle parking, track slot availability, and maintain entry/exit history. This project demonstrates the use of **Tkinter** for frontend design and DateTime module for time management.
 
 ---
 
@@ -47,6 +47,21 @@ This **Vehicle Management System** is a project designed to automate the parking
 
 ## 📸 Screenshots
 
+### 🏠 Home Screen
+![Home Screen](screenshots/Home.png)
+
+### ➕ Add Vehicle Page
+![Add Vehicle Screen](screenshots/Add_Vehicle.png)
+
+### 🛠 Manage Vehicle Page
+![Manage Vehicle Screen](screenshots/ManageVehicles.png)
+
+### 🛠 Manage Vehicle Page
+![Manage Vehicle Screen](screenshots/Occupied_Vehicles.png)
+
+### 📜 History Page
+![History Screen](screenshots/History.png)
+
 ---
 
 ## 🛠 Tech Stack
@@ -56,7 +71,6 @@ This **Vehicle Management System** is a project designed to automate the parking
 | **Language** | Python 3 |
 | **GUI Framework** | Tkinter (Standard Python Library) |
 | **Time Management** | Datetime Module |
-| **Data Structure** | Lists & Dictionaries (for in-memory storage) |
 
 ---
 
@@ -65,6 +79,6 @@ This **Vehicle Management System** is a project designed to automate the parking
 Follow these steps to run the project locally.
 
 ### Prerequisites
-Make sure you have Python installed. You can check by running:
+Make sure to have Python installed. Can check by running:
 ```bash
 python --version
