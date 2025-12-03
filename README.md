@@ -54,10 +54,10 @@ This **Vehicle Management System** is a project designed to automate the parking
 ![Add Vehicle Screen](screenshots/Add_Vehicles.png)
 
 ### 🛠 Manage Vehicle Page
-![Manage Vehicle Screen](screenshots/ManageVehicles.png)
+![Manage Vehicles Screen](screenshots/ManageVehicles.png)
 
 ### 🛠 Manage Vehicle Page
-![Manage Vehicle Screen](screenshots/Occupied_Slots.png)
+![Occupied Slots on Home Screen](screenshots/Occupied_Slots.png)
 
 ### 📜 History Page
 ![History Screen](screenshots/History.png)
@@ -88,7 +88,7 @@ python --version
 
 1. Clone the repository
 ```bash
-git clone [https://github.com/your-username/vehicle-management-system.git](https://github.com/your-username/vehicle-management-system.git)
+git clone https://github.com/VedikaSawant/Vehicle-Management-System.git
 ```
 
 2. Navigate to the project directory
