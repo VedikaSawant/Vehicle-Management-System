@@ -103,26 +103,29 @@ python MiniProject.py
 ---
 
 ## 🧠 How It Works
-###Initialization###: The app initializes an 8x5 grid (40 slots).
+### Initialization: 
+- The app initializes an 8x5 grid (40 slots).
+- A vis (visited) list tracks which slots are taken.
+- vehicle_data stores current vehicle details, and exit_data stores history.
 
-A vis (visited) list tracks which slots are taken.
+### Adding a Vehicle:
+- The system loops through the vis list to find the next 0 (empty) value.
+- It assigns that slot ID to the new vehicle and marks it as 1 (occupied).
 
-vehicle_data stores current vehicle details, and exit_data stores history.
+### Visual Update: 
+- When navigating to the Home tab, the code iterates through vehicle_data.
+- If a slot matches a vehicle's assigned slot, the UI grid button turns Red; otherwise, it remains Green.
 
-Adding a Vehicle:
+### Exiting:
+- Clicking "EXIT" in the Manage tab removes the vehicle from vehicle_data.
+- It updates the vis list index back to 0 (free).
+- It moves the record to exit_data with a current timestamp.
 
-The system loops through the vis list to find the next 0 (empty) value.
+---
 
-It assigns that slot ID to the new vehicle and marks it as 1 (occupied).
+## 🔮 Future Improvements
+- **Database Integration**: Connect to SQL/SQLite to save data permanently so it isn't lost when the app closes.
+- **Search Functionality**: Add a search bar to find vehicles by number plate or owner name.
+- **Billing System**: Calculate parking fees based on the duration (Exit Time - Entry Time).
 
-Visual Update: * When navigating to the Home tab, the code iterates through vehicle_data.
-
-If a slot matches a vehicle's assigned slot, the UI grid button turns Red; otherwise, it remains Green.
-
-Exiting:
-
-Clicking "EXIT" in the Manage tab removes the vehicle from vehicle_data.
-
-It updates the vis list index back to 0 (free).
-
-It moves the record to exit_data with a current timestamp.
+---
