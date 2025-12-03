@@ -51,13 +51,13 @@ This **Vehicle Management System** is a project designed to automate the parking
 ![Home Screen](screenshots/Home.png)
 
 ### ➕ Add Vehicle Page
-![Add Vehicle Screen](screenshots/Add_Vehicle.png)
+![Add Vehicle Screen](screenshots/Add_Vehicles.png)
 
 ### 🛠 Manage Vehicle Page
 ![Manage Vehicle Screen](screenshots/ManageVehicles.png)
 
 ### 🛠 Manage Vehicle Page
-![Manage Vehicle Screen](screenshots/Occupied_Vehicles.png)
+![Manage Vehicle Screen](screenshots/Occupied_Slots.png)
 
 ### 📜 History Page
 ![History Screen](screenshots/History.png)
@@ -82,3 +82,11 @@ Follow these steps to run the project locally.
 Make sure to have Python installed. Can check by running:
 ```bash
 python --version
+```
+
+### Installation
+
+## 1. Clone the repository
+```bash
+git clone [https://github.com/your-username/vehicle-management-system.git](https://github.com/your-username/vehicle-management-system.git)
+```
